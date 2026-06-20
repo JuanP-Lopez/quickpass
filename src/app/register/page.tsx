@@ -13,7 +13,7 @@ import {
 import { InputRequired } from "@/components/ui/input-required/input-required";
 import { ButtonLogin } from "@/components/ui/button-login/button-login";
 
-export default function Home() {
+export default function Register() {
   return (
     <div className=" flex flex-col justify-center items-center bg-background text-foreground min-h-screen m-2 gap-2">
 
@@ -21,19 +21,19 @@ export default function Home() {
 
       <Card className="w-full p-4">
         <CardHeader>
-          <CardTitle>Iniciar sesión</CardTitle>
-          <CardDescription>Ingresa tus datos para iniciar sesión.</CardDescription>
+          <CardTitle>Crear cuenta</CardTitle>
+          <CardDescription>Ingresa tus datos para registrarte.</CardDescription>
           <CardAction>
-            <Link href="/register">O registrate aquí</Link>
+            <Link href="/">O inicia sesión aquí</Link>
           </CardAction>
         </CardHeader>
         <CardContent>
+          <InputRequired label="Nombre de usuario" placeholderText='Ingresa tu nombre' type="text" />
           <InputRequired label="Correo electrónico" placeholderText='Ingresa tu correo electrónico' type="email" />
           <InputRequired label="Contraseña" placeholderText='Ingresa tu contraseña' type="password" />
-          <ButtonLogin placeholderText="Clic para iniciar sesión"/>
+          <ButtonLogin placeholderText="Clic para registrarte"/>
         </CardContent>
         <CardFooter>
-          <Link href="/dashboard">Ir a dashboard</Link>
           <p>Card Footer</p>
         </CardFooter>
       </Card>
