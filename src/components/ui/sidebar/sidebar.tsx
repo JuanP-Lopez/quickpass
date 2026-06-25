@@ -58,7 +58,7 @@ export function AppSidebar() {
                 <SidebarMenuButton asChild>
                   <Link href="/dashboard">
                     <LayoutDashboard />
-                    <span>Dashboard</span>
+                    <span>Inicio</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -119,7 +119,7 @@ export function AppSidebar() {
 
               <div className="flex flex-col flex-1">
                 <span className="font-medium">
-                  Juan Pérez
+                  Juan López
                 </span>
 
                 <span className="text-xs text-muted-foreground">
