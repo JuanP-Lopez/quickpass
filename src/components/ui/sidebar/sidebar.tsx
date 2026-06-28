@@ -1,4 +1,8 @@
+"use client"
+
 import Link from "next/link"
+
+import { useAuth } from "@/hooks/useAuth";
 
 import {
   Sidebar,
@@ -24,8 +28,47 @@ import {
   Settings,
   LogOut,
 } from "lucide-react"
+import { it } from "date-fns/locale";
 
 export function AppSidebar() {
+  const { usuario } = useAuth();
+
+  const menuItems = [
+    {
+      title: "Inicio",
+      url: "/dashboard",
+      icon: LayoutDashboard,
+      roles: ["Administrador", "Usuario"]
+    },
+    {
+      title: "Eventos",
+      url: "/dashboard/events",
+      icon: CalendarDays,
+      roles: ["Administrador", "Usuario"]
+    },
+    {
+      title: "Solicitudes",
+      url: "/dashboard/requests",
+      icon: ClipboardList,
+      roles: ["Administrador"]
+    },
+    {
+      title: "Reportes",
+      url: "/dashboard/reports",
+      icon: Ticket,
+      roles: ["Administrador"]
+    },
+    {
+      title: "Configuracion",
+      url: "/dashboard/settings",
+      icon: Settings,
+      roles: ["Administrador", "Usuario"]
+    }
+  ]
+
+  const items = menuItems.filter(item => item.roles.includes(usuario?.rol ?? ""));
+
+  console.log(items);
   return (
     <Sidebar>
 
@@ -37,7 +80,7 @@ export function AppSidebar() {
               <Shield />
               <div className="flex flex-col text-left">
                 <span className="font-semibold">
-                  Administrador
+                  {usuario?.rol}
                 </span>
                 <span className="text-xs text-muted-foreground">
                   QUICKPASS
@@ -54,50 +97,19 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
 
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href="/dashboard">
-                    <LayoutDashboard />
-                    <span>Inicio</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href="/dashboard/events">
-                    <CalendarDays />
-                    <span>Eventos</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href="/dashboard/requests">
-                    <ClipboardList />
-                    <span>Solicitudes</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href="/dashboard/reports">
-                    <BarChart3 />
-                    <span>Reportes</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href="/dashboard/settings">
-                    <Settings />
-                    <span>Configuración</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {items.map(item => {
+                const Icon = item.icon;
+                return (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <Link href={item.url}>
+                        <Icon />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
 
             </SidebarMenu>
           </SidebarGroupContent>
@@ -119,11 +131,11 @@ export function AppSidebar() {
 
               <div className="flex flex-col flex-1">
                 <span className="font-medium">
-                  Juan López
+                  {usuario?.nombre} {usuario?.apellido}
                 </span>
 
-                <span className="text-xs text-muted-foreground">
-                  Usuario
+                <span className="text-xs text-muted-foreground w-0.5">
+                  {usuario?.correo}
                 </span>
               </div>
 

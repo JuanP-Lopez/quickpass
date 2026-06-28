@@ -3,24 +3,29 @@ import {
   FieldDescription,
   FieldLabel,
 } from "@/components/ui/field";
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input";
 
-type InputRequiredProps = {
-  placeholderText: string,
-  label: string,
-  type: string;
-};
+interface InputRequiredProps{
+    id:string,
+    label:string;
+    placeholderText:string;
+    type:string;
+    value:string;
+    onChange:(e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-export function InputRequired({ placeholderText, label, type }: InputRequiredProps) {
+export function InputRequired({ id, placeholderText, label, type, value, onChange}: InputRequiredProps) {
   return (
     <Field>
       <FieldLabel htmlFor="input-required">
         {label} <span className="text-destructive">*</span>
       </FieldLabel>
       <Input
-        id="input-required"
+        id={id}
         type={type}
         placeholder={placeholderText}
+        value={value}
+        onChange={onChange}
         required
       />
       <FieldDescription>Este campo no puede estar vacío.</FieldDescription>

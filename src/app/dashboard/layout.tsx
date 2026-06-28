@@ -1,5 +1,7 @@
+import AuthProvider from "@/providers/AuthProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
+
 import { FloatingSidebarTrigger } from "@/components/ui/sidebartrigger/sidebartrigger";
 import { AppSidebar } from "@/components/ui/sidebar/sidebar";
 
@@ -40,7 +42,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <AuthProvider>
           {children}
+          </AuthProvider>
           <div className="fixed bottom-4 left-4 z-50">
             <FloatingSidebarTrigger />
           </div>
