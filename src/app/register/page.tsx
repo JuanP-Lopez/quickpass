@@ -26,7 +26,7 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5111/api/auth/register", {
+      const res = await fetch("https://quickpassapi-production.up.railway.app/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
