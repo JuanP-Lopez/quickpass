@@ -20,7 +20,7 @@ export default function Requests() {
 
                     <RequestEmpty />
 
-                    <RequestAccordion 
+                    {/* <RequestAccordion 
                         usuario="Juan López"
                         evento="Fila pagos Caja 2"
                         fecha="24/06/26"
@@ -37,7 +37,7 @@ export default function Requests() {
                         evento="Fila pagos Caja 2"
                         fecha="24/06/26"
                         hora="13:20 p.m."
-                    />
+                    /> */}
                 </div>
 
             </main>

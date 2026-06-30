@@ -114,7 +114,7 @@ export default function Home() {
 
         </CardContent>
         <CardFooter>
-          <p>Card Footer</p>
+          <p>QuickPass 2026</p>
         </CardFooter>
       </Card>
     </div>
