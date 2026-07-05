@@ -97,7 +97,7 @@ export default function Register() {
           </form>
         </CardContent>
         <CardFooter>
-          <p>Card Footer</p>
+          <p>Quickpass 2026</p>
         </CardFooter>
       </Card>
     </div>

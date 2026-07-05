@@ -26,7 +26,7 @@ export function CreateEventCard({title, description, timeStamp} : InfoRequired) 
       />
       <CardHeader>
         <CardAction>
-          <Badge variant="destructive">Creado el: {timeStamp}</Badge>
+          <Badge variant="destructive">Fecha: {timeStamp}</Badge>
         </CardAction>
         <CardTitle>{title}</CardTitle>
         <CardDescription>
