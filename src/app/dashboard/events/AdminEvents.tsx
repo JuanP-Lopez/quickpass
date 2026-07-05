@@ -20,7 +20,7 @@ export default function AdminEvents() {
         console.log("Id:", usuario?.id);
 
         async function obtenerEventos() {
-            const res = await fetch(`http://localhost:5111/api/evento/administrador/${usuario?.id}`)
+            const res = await fetch(`https://quickpassapi-production.up.railway.app/api/evento/administrador/${usuario?.id}`)
 
             const eventos = await res.json();
 

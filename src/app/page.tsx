@@ -30,7 +30,7 @@ export default function Home() {
 
     try {
       // const res = await fetch("https://quickpassapi-production.up.railway.app/api/auth/login", {
-      const res = await fetch("http://localhost:5111/api/auth/login", {
+      const res = await fetch("https://quickpassapi-production.up.railway.app/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type" : "application/json"
