@@ -12,10 +12,12 @@ import {
 type InfoRequired = {
     title : string,
     description : string,
-    timeStamp : string
+    timeStamp : string,
+    hora_inicio: string,
+    hora_final: string
 }
 
-export function CardEvent({title, description, timeStamp} : InfoRequired) {
+export function CardEvent({title, description, timeStamp, hora_inicio, hora_final} : InfoRequired) {
   return (
     <Card className="relative mx-auto w-full max-w-sm pt-0">
       <div className="absolute inset-0 z-30 aspect-video bg-blue-400/20" />
@@ -33,7 +35,8 @@ export function CardEvent({title, description, timeStamp} : InfoRequired) {
           {description}
         </CardDescription>
       </CardHeader>
-      <CardFooter>
+      <CardFooter className="flex flex-col gap-1">
+        Este evento empieza a las: {hora_inicio} y termina a las {hora_final}
         <Button className="w-full">Ingresar a la fila</Button>
       </CardFooter>
     </Card>

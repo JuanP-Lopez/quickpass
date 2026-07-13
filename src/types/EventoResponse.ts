@@ -5,4 +5,5 @@ export interface EventoResponse {
     fecha: string;
     hora_Inicio: string;
     hora_Final: string;
+    slots_disponibles: number
 }
