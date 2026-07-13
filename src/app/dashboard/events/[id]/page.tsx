@@ -14,7 +14,7 @@ import { TurnButton } from "@/components/ui/action-button/action-button";
 export default async function EventoId({ params }: any) {
     const { id } = await params;
 
-    const res = await fetch(`https://quickpassapi-production.up.railway.app/api/evento/vista?id=${id}`,
+    const res = await fetch(`https://quickpass-production.up.railway.app/api/evento/vista?id=${id}`,
         { cache: "no-store" }
     );
 
@@ -63,7 +63,7 @@ export default async function EventoId({ params }: any) {
                             <TableHead className="font-bold">Hr. Inicio</TableHead>
                             <TableHead className="font-bold">Hr. Finalización</TableHead>
                             <TableHead className="font-bold text-right">Estado</TableHead>
-                            <TableHead className="font-bold">Acción</TableHead>
+                            <TableHead className="font-bold text-center items-center justify-center">Acción</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody className="bg-mist-800">
