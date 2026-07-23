@@ -13,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     async function obtenerEventos() {
-      const res = await fetch("https://quickpassapi-production.up.railway.app/api/evento/eventos");
+      const res = await fetch("http://localhost:5111/api/evento/eventos");
 
       const eventos: EventoResponse[] = await res.json();
 

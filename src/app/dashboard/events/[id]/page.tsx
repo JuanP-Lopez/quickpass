@@ -14,7 +14,7 @@ import { TurnButton } from "@/components/ui/action-button/action-button";
 export default async function EventoId({ params }: any) {
     const { id } = await params;
 
-    const res = await fetch(`https://quickpass-production.up.railway.app/api/evento/vista?id=${id}`,
+    const res = await fetch(`http://localhost:3000/api/evento/vista?id=${id}`,
         { cache: "no-store" }
     );
 
@@ -23,7 +23,6 @@ export default async function EventoId({ params }: any) {
     const slots = await evento.slots;
 
     console.log(evento);
-
     console.log(slots);
 
     return (
@@ -75,7 +74,7 @@ export default async function EventoId({ params }: any) {
                                     <TableCell>{slot.hora_Inicio}</TableCell>
                                     <TableCell>{slot.hora_Final}</TableCell>
                                     <TableCell className="text-right">{slot.estado}</TableCell>
-                                    <TableCell><TurnButton/></TableCell>
+                                    <TableCell><TurnButton slotId={slot.id} estado={slot.estado}/></TableCell>
                                 </TableRow>
                             )
                         })}

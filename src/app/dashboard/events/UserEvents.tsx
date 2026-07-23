@@ -1,16 +1,48 @@
+"use client"
+
 import { NextEvent } from "@/components/ui/next-event/next-event";
+import { useState, useEffect } from "react";
+
+import { useAuth } from "@/hooks/useAuth";
 
 export default function UserEvents() {
-    return(
+    const [eventos, setEventos] = useState<[]>([]);
+
+    const { usuario } = useAuth();
+
+    useEffect(() => {
+        if (!usuario) return;
+
+        async function ObtenerTurnos() {
+            const res = await fetch(`http://localhost:3000/api/slot/turnos?id=${usuario?.id}`,
+                { cache: "no-store" }
+            );
+
+            const eventos: [] = await res.json();
+
+            setEventos(eventos);
+        }
+
+        ObtenerTurnos();
+    }, [usuario])
+
+    console.log(eventos);
+
+    return (
         <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-2">
-                
-                <NextEvent 
-                    title="Fila pagos Caja 2" 
-                    description="Pagos con tarjeta unicamente. De 8:00 a.m hasta las 6:30 p.m." 
-                    timeStamp="22/06/2026"
-                    timeAsigned="13:45 p.m"
-                />
+
+                {eventos.map((evento : any) => {
+                    return (
+                        <NextEvent
+                            key={evento.idEvento}
+                            title={evento.nombreEvento}
+                            description={evento.descripcion}
+                            timeStamp={evento.fecha}
+                            timeAsigned={evento.estado}
+                        />
+                    );
+                })}
 
             </div>
         </div>
