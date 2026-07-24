@@ -1,15 +1,15 @@
 "use client"
 
-import { IconTrashFilled } from "@tabler/icons-react"
+import { IconCheckFilled } from "@tabler/icons-react"
 
 import { Button } from "@/components/ui/button"
 
 import type { Props } from "@/types/Props";
 
-export function RejectButton({ slotId, onExecute }: Props) {
+export function AcceptButton({slotId, onExecute } : Props) {
 
-  async function RechazarTurno() {
-    const res = await fetch("/api/slot/rechazar", {
+  async function AceptarTurno() {
+    const res = await fetch("/api/slot/aceptar", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
@@ -29,8 +29,8 @@ export function RejectButton({ slotId, onExecute }: Props) {
 
   return (
     <div className="flex gap-2">
-      <Button variant="destructive" onClick={RechazarTurno}>
-        <IconTrashFilled data-icon="inline-start" /> Rechazar
+      <Button variant="success" onClick={AceptarTurno}>
+        <IconCheckFilled data-icon="inline-start" /> Aceptar
       </Button>
     </div>
   )

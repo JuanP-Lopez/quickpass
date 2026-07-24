@@ -1,18 +1,17 @@
 "use client"
 
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/hooks/useAuth";
 
+import { obtenerSolicitudes } from "@/lib/solicitudes";
 import type { Solicitud } from "@/types/Solicitud";
 
 import { Header } from "@/components/ui/header/header";
-// import { RequestCard } from "@/components/ui/request-card/request-card";
 import { RequestEmpty } from "@/components/ui/requests-empty/requests-empty";
 import { SearchBar } from "@/components/ui/searchbar/searchbar";
 import { RequestTab } from "@/components/ui/requests-tabs/requests-tabs";
 import { RejectButton } from "@/components/ui/reject-button/reject-button";
-import { AcceptButton } from "@/components/ui/accept-button/reject-button";
+import { AcceptButton } from "@/components/ui/accept-button/accept-button";
 import {
     Table,
     TableBody,
@@ -27,21 +26,22 @@ export default function Requests() {
     const [solicitudes, setSolicitudes] = useState<Solicitud[]>([]);
     const { usuario } = useAuth();
 
-    useEffect(() => {
-        if (!usuario) return;
-
-        async function ObtenerSolicitudes() {
-            const res = await fetch(`http://localhost:3000/api/evento/solicitudes?id=${usuario?.id}`,
-                { cache: "no-store" }
-            );
-
-            const solicitudes: [] = await res.json();
-
-            setSolicitudes(solicitudes);
+    const cargarSolicitudes = useCallback(async () => {
+        if (!usuario) {
+            return;
         }
 
-        ObtenerSolicitudes();
-    }, [usuario])
+        try {
+            const data = await obtenerSolicitudes(usuario?.id);
+            setSolicitudes(data);
+        } catch (err) {
+            console.error(err);
+        }
+    }, [usuario]);
+
+    useEffect(() => {
+        cargarSolicitudes();
+    }, [cargarSolicitudes])
 
     console.log(solicitudes);
 
@@ -59,7 +59,7 @@ export default function Requests() {
 
                     {
                         solicitudes.length === 0 ? (
-                            <RequestEmpty />
+                            <RequestEmpty onExecute={cargarSolicitudes}/>
                         ) : (
                             <Table>
                                 <TableHeader>
@@ -85,8 +85,8 @@ export default function Requests() {
                                                 <TableCell>{solicitud.hora_Final}</TableCell>
                                                 <TableCell>{solicitud.fecha}</TableCell>
                                                 <TableCell className="flex flex-row gap-1">
-                                                    <RejectButton slotId={solicitud.idSlot} />
-                                                    <AcceptButton slotId={solicitud.idSlot} />
+                                                    <RejectButton slotId={solicitud.idSlot} onExecute={cargarSolicitudes}/>
+                                                    <AcceptButton slotId={solicitud.idSlot} onExecute={cargarSolicitudes}/>
                                                 </TableCell>
                                             </TableRow>
                                         )

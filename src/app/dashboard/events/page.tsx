@@ -1,29 +1,55 @@
 "use client"
 
+import { NextEvent } from "@/components/ui/next-event/next-event";
+import { useState, useEffect } from "react";
+
 import { useAuth } from "@/hooks/useAuth";
 
 import { Header } from "@/components/ui/header/header";
-import AdminEvents from "@/app/dashboard/events/AdminEvents";
-import UserEvents from "@/app/dashboard/events/UserEvents";
 
-export default function Events() {
+export default function UserEvents() {
+    const [eventos, setEventos] = useState<[]>([]);
+
     const { usuario } = useAuth();
+
+    useEffect(() => {
+        if (!usuario) return;
+
+        async function ObtenerTurnos() {
+            const res = await fetch(`http://localhost:3000/api/slot/turnos?id=${usuario?.id}`,
+                { cache: "no-store" }
+            );
+
+            const eventos: [] = await res.json();
+
+            setEventos(eventos);
+        }
+
+        ObtenerTurnos();
+    }, [usuario])
+
+    console.log(eventos);
+
     return (
         <div>
-
+            
             <Header header="Eventos"/>
 
-            {/* Apartado del administrador*/}
-            {usuario?.rol === "Administrador" && (
-                <AdminEvents/>
-            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-2">
 
-            {/* Apartado del usuario*/}
-            {usuario?.rol === "Usuario" && (
-                <UserEvents/>
-            )}
+                {eventos.map((evento : any) => {
+                    return (
+                        <NextEvent
+                            key={evento.idEvento}
+                            title={evento.nombreEvento}
+                            description={evento.descripcion}
+                            timeStamp={evento.fecha}
+                            timeAsigned={evento.estado}
+                        />
+                    );
+                })}
 
-
+            </div>
         </div>
-    )
+    );
 }

@@ -9,9 +9,15 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty"
+} from "@/components/ui/empty";
 
-export function RequestEmpty() {
+import type { Props } from "@/types/Props";
+
+export function RequestEmpty({ onExecute }: Props) {
+
+  async function refresh() {
+    onExecute?.();
+  }
   return (
     <Empty className="h-full bg-muted/30 mt-1">
       <EmptyHeader>
@@ -24,7 +30,7 @@ export function RequestEmpty() {
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
-        <Button variant="outline">
+        <Button variant="outline" onClick={onExecute}>
           <RefreshCcwIcon />
           Refrescar
         </Button>

@@ -24,12 +24,9 @@ import {
   CalendarDays,
   ClipboardList,
   Ticket,
-  BarChart3,
   Settings,
   LogOut,
 } from "lucide-react"
-import { it } from "date-fns/locale";
-
 export function AppSidebar() {
   const { usuario } = useAuth();
 
@@ -44,7 +41,7 @@ export function AppSidebar() {
       title: "Eventos",
       url: "/dashboard/events",
       icon: CalendarDays,
-      roles: ["Administrador", "Usuario"]
+      roles: ["Usuario"]
     },
     {
       title: "Solicitudes",

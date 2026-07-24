@@ -35,7 +35,7 @@ export function NextEvent({title, description, timeStamp, timeAsigned} : InfoReq
         </CardDescription>
       </CardHeader>
       <CardFooter>
-        <Button className="w-full">Turno: {timeAsigned}</Button>
+        <Button className="w-full" disabled={timeAsigned !== "Asignado"}>Turno: {timeAsigned}</Button>
       </CardFooter>
     </Card>
   )

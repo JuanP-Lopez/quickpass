@@ -1,52 +1,29 @@
 "use client"
 
-import Link from "next/link";
-import { useState, useEffect } from "react";
-
-import type { EventoResponse } from "@/types/EventoResponse";
+import { useAuth } from "@/hooks/useAuth";
 
 import { Header } from "@/components/ui/header/header";
-import { CardEvent } from "@/components/ui/event-card/event-card";
+import AdminHome from "@/app/dashboard/AdminHome";
+import UserHome from "@/app/dashboard/UserHome";
 
-export default function Home() {
-  const [eventos, setEventos] = useState<EventoResponse[]>([]);
+export default function Events() {
+    const { usuario } = useAuth();
+    return (
+        <div className="flex flex-col w-full h-full bg-background text-foreground">
 
-  useEffect(() => {
-    async function obtenerEventos() {
-      const res = await fetch("http://localhost:5111/api/evento/eventos");
+            <Header header="Inicio" />
 
-      const eventos: EventoResponse[] = await res.json();
+            {/* Apartado del administrador*/}
+            {usuario?.rol === "Administrador" && (
+                <AdminHome/>
+            )}
 
-      setEventos(eventos);
-    }
+            {/* Apartado del usuario*/}
+            {usuario?.rol === "Usuario" && (
+                <UserHome/>
+            )}
 
-    obtenerEventos();
-  }, []);
 
-  console.log(eventos);
-  return (
-    <div className="flex flex-col w-full h-full bg-background text-foreground">
-
-      <Header header="Inicio" />
-
-      <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-2">
-
-        {eventos.map((evento) => {
-          return (
-            <Link key={evento.id} href={`/dashboard/events/${evento.id}`}>
-            <CardEvent
-              title={evento.nombre}
-              description={evento.descripcion}
-              timeStamp={evento.fecha}
-              hora_inicio={evento.hora_Inicio}
-              hora_final={evento.hora_Final}
-            />
-            </Link>
-          );
-        })}
-
-      </main>
-
-    </div>
-  );
+        </div>
+    )
 }
