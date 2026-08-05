@@ -5,7 +5,7 @@ export async function GET(request: Request) {
     const id = searchParams.get("id");
 
     const res = await fetch(
-        `https://quickpass-production.up.railway.app/api/slot/usuario/${id}`,
+        `https://quickpassapi-production.up.railway.app/api/slot/usuario/${id}`,
         {
             method: "GET",
             headers: {

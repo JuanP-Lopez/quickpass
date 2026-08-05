@@ -29,7 +29,7 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://quickpass-production.up.railway.app/api/auth/login", {
+      const res = await fetch("https://quickpassapi-production.up.railway.app/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type" : "application/json"
@@ -58,7 +58,7 @@ export default function Home() {
   useEffect(() => {
     async function probarAPI() {
       try {
-        const res = await fetch("https://quickpass-production.up.railway.app/api/test");
+        const res = await fetch("https://quickpassapi-production.up.railway.app/api/test");
 
         console.log("Status:", res.status);
 
