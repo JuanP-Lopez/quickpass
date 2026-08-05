@@ -77,7 +77,7 @@ export default function Home() {
 
       <ModeToggle />
 
-      <img src="@/iconoPassGo.png" alt="Logo PassGo" className="w-50 h-50"/>
+      <img src="https://quickpass-production.up.railway.app/public/iconoPassGo.png" alt="Logo PassGo" className="w-50 h-50"/>
 
       <Card className="w-full p-4">
         <CardHeader>
