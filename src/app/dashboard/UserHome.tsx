@@ -29,7 +29,7 @@ export default function Home() {
 
         {eventos.map((evento) => {
           return (
-            <Link key={evento.id} href={`/dashboard/events/${evento.id}`}>
+            <Link key={evento.id} href={`https://quickpass-production.up.railway.app/dashboard/events/${evento.id}`}>
             <CardEvent
               title={evento.nombre}
               description={evento.descripcion}

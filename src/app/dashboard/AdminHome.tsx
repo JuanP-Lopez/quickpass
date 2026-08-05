@@ -44,7 +44,7 @@ export default function AdminEvents() {
             return;
         }
 
-        const res = await fetch("/api/evento/eliminar", {
+        const res = await fetch("https://quickpass-production.up.railway.app/api/evento/eliminar", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
