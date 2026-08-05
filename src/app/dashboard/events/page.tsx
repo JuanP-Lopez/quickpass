@@ -16,7 +16,7 @@ export default function UserEvents() {
         if (!usuario) return;
 
         async function ObtenerTurnos() {
-            const res = await fetch(`api/slot/turnos?id=${usuario?.id}`,
+            const res = await fetch(`/api/slot/turnos?id=${usuario?.id}`,
                 { cache: "no-store" }
             );
 

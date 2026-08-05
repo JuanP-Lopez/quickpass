@@ -14,7 +14,7 @@ import { TurnButton } from "@/components/ui/action-button/action-button";
 export default async function EventoId({ params }: any) {
     const { id } = await params;
 
-    const res = await fetch(`http://localhost:3000/api/evento/vista?id=${id}`,
+    const res = await fetch(`/api/evento/vista?id=${id}`,
         { cache: "no-store" }
     );
 
