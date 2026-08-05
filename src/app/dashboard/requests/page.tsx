@@ -43,8 +43,6 @@ export default function Requests() {
         cargarSolicitudes();
     }, [cargarSolicitudes])
 
-    console.log(solicitudes);
-
     return (
         <div className="flex-1 flex-col">
 
