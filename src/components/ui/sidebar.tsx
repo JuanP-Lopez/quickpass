@@ -241,7 +241,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="flex size-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-sidebar-border"
+          className="flex size-full flex-col bg-[#010a13] text-white border-r"
         >
           {children}
         </div>
@@ -263,7 +263,7 @@ function SidebarTrigger({
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon-sm"
-      className={cn(className)}
+      className={cn("hover:bg-[#03182D] hover:text-[#EAB946]", className)}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
@@ -333,7 +333,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-header"
       data-sidebar="header"
-      className={cn("flex flex-col gap-2 p-2", className)}
+      className={cn("flex flex-col gap-3 p-4 border-b bg-[#030b13]", className)}
       {...props}
     />
   )
@@ -509,7 +509,7 @@ function SidebarMenuButton({
       data-sidebar="menu-button"
       data-size={size}
       data-active={isActive}
-      className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
+      className={cn(sidebarMenuButtonVariants({ variant, size }), className, "hover:bg-[#EAB946]/30 hover:text-[#EAB946]data-active:bg-[#EAB946] data-active:text-[#03182D] hover:translate-x-1 transition-all duration-200")}
       {...props}
     />
   )

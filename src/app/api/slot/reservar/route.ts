@@ -4,7 +4,7 @@ export async function POST(request: Request) {
     const body = await request.json();
 
     const res = await fetch(
-        "http://localhost:5111/api/slot/reservar",
+        "https://quickpass-production.up.railway.app/api/slot/reservar",
         {
             method: "POST",
             headers: {

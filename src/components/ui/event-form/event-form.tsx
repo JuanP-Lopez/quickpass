@@ -56,7 +56,7 @@ export function SheetEvent() {
     }
 
     try {
-      const res = await fetch("https://quickpassapi-production.up.railway.app/api/evento/create", {
+      const res = await fetch("https://quickpass-production.up.railway.app/api/evento/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

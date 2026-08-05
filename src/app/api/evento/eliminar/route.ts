@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 
-export async function PUT(request: Request) {
+export async function DELETE(request: Request) {
     const body = await request.json();
 
     const res = await fetch(
-        "https://quickpass-production.up.railway.app/api/slot/aceptar",
+        "https://quickpass-production.up.railway.app/api/evento/eliminar",
         {
-            method: "PUT",
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             },

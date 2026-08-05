@@ -29,7 +29,7 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5111/api/auth/login", {
+      const res = await fetch("https://quickpass-production.up.railway.app/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type" : "application/json"
@@ -58,7 +58,7 @@ export default function Home() {
   useEffect(() => {
     async function probarAPI() {
       try {
-        const res = await fetch("http://localhost:5111/api/test");
+        const res = await fetch("https://quickpass-production.up.railway.app/api/test");
 
         console.log("Status:", res.status);
 
@@ -73,8 +73,11 @@ export default function Home() {
     probarAPI();
   }, []);
   return (
-    <div className=" flex flex-col justify-center items-center bg-background text-foreground min-h-screen m-2 gap-2">
+    <div className=" flex flex-col justify-center items-center bg-background text-foreground min-h-screen m-2 gap-1">
+
       <ModeToggle />
+
+      <img src="/iconoPassGo.png" alt="Logo PassGo" className="w-50 h-50"/>
 
       <Card className="w-full p-4">
         <CardHeader>

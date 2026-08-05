@@ -72,8 +72,7 @@ export function AppSidebar() {
       {/* HEADER */}
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg">
+          <SidebarMenuItem className="flex flex-row gap-1">
               <Shield />
               <div className="flex flex-col text-left">
                 <span className="font-semibold">
@@ -83,7 +82,6 @@ export function AppSidebar() {
                   QUICKPASS
                 </span>
               </div>
-            </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
