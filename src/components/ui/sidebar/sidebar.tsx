@@ -50,7 +50,7 @@ export function AppSidebar() {
       roles: ["Administrador"]
     },
     {
-      title: "Reportes",
+      title: "Asistencias",
       url: "/dashboard/reports",
       icon: Ticket,
       roles: ["Administrador"]
