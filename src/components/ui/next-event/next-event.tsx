@@ -15,9 +15,10 @@ type InfoRequired = {
     timeStamp : string,
     timeAsigned : string,
     hour : string,
+    pin: string
 }
 
-export function NextEvent({title, description, timeStamp, timeAsigned, hour} : InfoRequired) {
+export function NextEvent({title, description, timeStamp, timeAsigned, hour, pin} : InfoRequired) {
   return (
     <Card className="relative mx-auto w-full max-w-sm pt-0">
       <div className="absolute inset-0 z-30 aspect-video bg-green-300/20" />
@@ -37,7 +38,7 @@ export function NextEvent({title, description, timeStamp, timeAsigned, hour} : I
       </CardHeader>
       <CardFooter className="flex flex-col gap-1">
         <Button className="w-full" disabled={timeAsigned !== "Asignado"}>Turno: {timeAsigned}</Button>
-        {timeAsigned === "Asignado" && (`Hora a la que debes asistir: ${hour}`)}
+        {timeAsigned === "Asignado" && (`Hora a la que debes asistir: ${hour} y PIN: ${pin}`)}
       </CardFooter>
     </Card>
   )

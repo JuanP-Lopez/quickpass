@@ -46,6 +46,7 @@ export default function UserEvents() {
                             timeStamp={evento.fecha}
                             timeAsigned={evento.estado}
                             hour={evento.horaInicio}
+                            pin={evento.pin}
                         />
                     );
                 })}

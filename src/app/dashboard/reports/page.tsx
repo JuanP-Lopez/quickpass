@@ -67,7 +67,7 @@ export default function Events() {
                                     <TableCell className="font-medium">{turno.evento}</TableCell>
                                     <TableCell>{turno.nombreUsuario} {turno.apellidoUsuario}</TableCell>
                                     <TableCell>{turno.correo}</TableCell>
-                                    <TableCell></TableCell>
+                                    <TableCell>{turno.pin}</TableCell>
                                     <TableCell>{turno.horaInicio}</TableCell>
                                     <TableCell className="flex flex-row gap-1"> 
                                         <AsistanceButton slotId={turno.idSlot} onExecute={cargarTurnos}/>
