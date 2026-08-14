@@ -1,3 +1,11 @@
+"use client"
+
+import { useState, useEffect, useCallback } from "react";
+import { useAuth } from "@/hooks/useAuth";
+
+import { TurnoAsignado } from "@/types/TurnoAsignado";
+import { obtenerTurnosAsignadosHoy } from "@/lib/asignados";
+
 import { Header } from "@/components/ui/header/header";
 
 import {
@@ -13,6 +21,26 @@ import { AsistanceButton } from "@/components/ui/asistance-button/asistance-butt
 import { NotAsistanceButton } from "@/components/ui/no-asistance-button/no-asistance-button";
 
 export default function Events() {
+    const { usuario } = useAuth();
+    const [turnos, setTurnos] = useState<TurnoAsignado[]>([]);
+
+    const cargarTurnos = useCallback(async () => {
+        if (!usuario) return;
+
+        try {
+            const data = await obtenerTurnosAsignadosHoy(usuario.id);
+            setTurnos(data);
+        } catch (error) {
+            console.error(error);
+        }
+    }, [usuario]);
+
+    useEffect(() => {
+        cargarTurnos();
+    }, [cargarTurnos]);
+
+    console.log("Turnos recuperados: ", turnos);
+
     return (
         <div>
 
@@ -33,26 +61,22 @@ export default function Events() {
                     </TableHeader>
                     <TableBody className="bg-mist-800">
 
-                        {/* {slots.map((slot: any) => {
+                        {turnos.map((turno: any) => {
                             return (
-                                <TableRow key={slot.id}>
-                                    <TableCell className="font-medium">{slot.id}</TableCell>
-                                    <TableCell>{slot.hora_Inicio}</TableCell>
-                                    <TableCell>{slot.hora_Final}</TableCell>
-                                    <TableCell className="text-right">{slot.estado}</TableCell>
-                                    <TableCell><TurnButton slotId={slot.id} estado={slot.estado} /></TableCell>
+                                <TableRow key={turno.idSlot}>
+                                    <TableCell className="font-medium">{turno.evento}</TableCell>
+                                    <TableCell>{turno.nombreUsuario} {turno.apellidoUsuario}</TableCell>
+                                    <TableCell>{turno.correo}</TableCell>
+                                    <TableCell></TableCell>
+                                    <TableCell>{turno.horaInicio}</TableCell>
+                                    <TableCell className="flex flex-row gap-1"> 
+                                        <AsistanceButton slotId={turno.idSlot} onExecute={cargarTurnos}/>
+                                        <NotAsistanceButton slotId={turno.idSlot} onExecute={cargarTurnos}/>
+                                    </TableCell>
                                 </TableRow>
                             )
-                        })} */}
+                        })}
 
-                        <TableRow>
-                                    <TableCell className="font-medium"></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell className="flex flex-row gap-1"> <AsistanceButton /> <NotAsistanceButton/> </TableCell>
-                                </TableRow>
 
                     </TableBody>
                 </Table>

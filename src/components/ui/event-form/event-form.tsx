@@ -4,6 +4,8 @@ import * as React from "react"
 
 import { useAuth } from "@/hooks/useAuth";
 
+import { obtenerFechaLocal } from "@/lib/construirFecha";
+
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button"
@@ -36,8 +38,8 @@ export function SheetEvent() {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDesc] = useState("");
   const [fecha, setFecha] = React.useState<Date | undefined>(undefined)
-  const [horaInicio, setHoraInicio] = useState("10:30:00");
-  const [horaFinal, setHoraFinal] = useState("11:00:00");
+  const [horaInicio, setHoraInicio] = useState("22:30:00");
+  const [horaFinal, setHoraFinal] = useState("23:00:00");
 
   const [open, setOpen] = React.useState(false)
 
@@ -52,11 +54,12 @@ export function SheetEvent() {
       fecha: fecha?.toISOString().split("T")[0],
       hora_Inicio: horaInicio,
       hora_Final: horaFinal,
-      id_Administrador: usuario?.id  
+      id_Administrador: usuario?.id,
+      fechaActual: obtenerFechaLocal()
     }
 
     try {
-      const res = await fetch("https://quickpassapi-production.up.railway.app/api/evento/create", {
+      const res = await fetch("http://localhost:5111/api/evento/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

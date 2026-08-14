@@ -1,30 +1,30 @@
 "use client"
 
+import type { Props } from "@/types/Props";
+
 import { useAuth } from "@/hooks/useAuth";
 
 import { IconX } from "@tabler/icons-react"
 
 import { Button } from "@/components/ui/button"
 
-export function NotAsistanceButton({slotId, estado} : any) {
-
-  const { usuario } = useAuth();
+export function NotAsistanceButton({slotId, onExecute } : Props) {
 
   async function noAsistio() {
-    const res = await fetch("/api/slot/reservar", {
-      method: "POST",
+    const res = await fetch("/api/slot/noasistio", {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        idSlot: slotId,
-        idUsuario: usuario?.id
+        idSlot: slotId
       })
     });
 
     const data = await res.json();
 
     console.log(data);
+    onExecute?.();
   }
 
   return (

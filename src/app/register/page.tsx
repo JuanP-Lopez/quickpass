@@ -50,6 +50,8 @@ export default function Register() {
     <div className=" flex flex-col justify-center items-center bg-background text-foreground min-h-screen m-2 gap-2">
       <ModeToggle />
 
+      <img src="/IconoPassGo.png" alt="Logo PassGo" className="w-50 h-50"/>
+
       <Card className="w-full p-4">
         <CardHeader>
           <CardTitle>Crear cuenta</CardTitle>
