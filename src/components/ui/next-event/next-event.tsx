@@ -38,7 +38,7 @@ export function NextEvent({title, description, timeStamp, timeAsigned, hour, pin
       </CardHeader>
       <CardFooter className="flex flex-col gap-1">
         <Button className="w-full" disabled={timeAsigned !== "Asignado"}>Turno: {timeAsigned}</Button>
-        {timeAsigned === "Asignado" && (`Hora a la que debes asistir: ${hour} y PIN: ${pin}`)}
+        {timeAsigned === "Asignado" && (`Hora a la que debes asistir: ${hour} PIN: ${pin}`)}
       </CardFooter>
     </Card>
   )

@@ -55,12 +55,12 @@ export function AppSidebar() {
       icon: Ticket,
       roles: ["Administrador"]
     },
-    {
-      title: "Configuracion",
-      url: "/dashboard/settings",
-      icon: Settings,
-      roles: ["Administrador", "Usuario"]
-    }
+    // {
+    //   title: "Configuracion",
+    //   url: "/dashboard/settings",
+    //   icon: Settings,
+    //   roles: ["Administrador", "Usuario"]
+    // }
   ]
 
   const items = menuItems.filter(item => item.roles.includes(usuario?.rol ?? ""));

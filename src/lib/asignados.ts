@@ -1,7 +1,7 @@
 export async function obtenerTurnosAsignadosHoy(
     idAdministrador: number
 ) {
-    const res = await fetch(`https://quickpassapi-production.up.railway.app//api/slot/hoy?idAdministrador=${idAdministrador}`,
+    const res = await fetch(`https://quickpassapi-production.up.railway.app/api/slot/hoy?idAdministrador=${idAdministrador}`,
         {
             cache: "no-store",
         }
