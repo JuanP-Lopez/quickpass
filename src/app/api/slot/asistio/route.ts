@@ -4,7 +4,7 @@ export async function PUT(request: Request) {
     const body = await request.json();
 
     const res = await fetch(
-        "http://localhost:5111/api/slot/asistio",
+        "https://quickpassapi-production.up.railway.app/api/slot/asistio",
         {
             method: "PUT",
             headers: {
